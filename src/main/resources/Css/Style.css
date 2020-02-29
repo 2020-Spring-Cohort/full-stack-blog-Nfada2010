@@ -4,34 +4,57 @@ html{
     background-repeat: no-repeat;
 
 }
+
+.htmlPost{
+background-image: url("https://images.unsplash.com/photo-1493932484895-752d1471eab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.htmlCategories{
+    background-image: url("https://images.unsplash.com/photo-1478812954026-9c750f0e89fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.htmlTag{
+    background-image: url("https://images.unsplash.com/photo-1494026222377-872a605b54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .mainWebsiteContainer{
     font-size: 30px ;
     font-family: Arial, Helvetica, sans-serif;
-background-color: rgba(131, 105, 226, 0.92);
+background-color: rgba(131, 105, 226, 0.45);
 
 }
+.mainCategoriesContainer{
+    font-size: 30px ;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(113, 208, 207, 0.4);
 
+}
 .mainPostContainer{
     font-size: 30px ;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(131, 105, 226, 0.92);
+    background-color: rgba(131, 105, 226, 0.45);
 
 }
 
 .headerContainer {
     font-size: 40px ;
     font-family: Arial, Helvetica, sans-serif;
-background-color: rgba(156, 156, 156, 0.7);
+background-color: rgba(156, 156, 156, 0.45);
 }
 .footerContainer{
     font-size: 35px ;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(107, 156, 97, 0.7);
+    background-color: rgba(107, 156, 97, 0.43);
 }
 
 .categoryContainer {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(125, 208, 87, 0.57);
+    background-color: rgba(113, 208, 207, 0.32);
 }
 .bodyContainer{
     font-family: Arial, Helvetica, sans-serif;

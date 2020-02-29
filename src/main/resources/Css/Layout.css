@@ -27,6 +27,36 @@
 
 }
 
+.mainCategoriesContainer{
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 150px 150px;
+    column-gap: 50px;
+    row-gap: 50px;
+    margin: 25px;
+    padding: 25px;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    border-radius: 25px;
+
+}
+
+.mainTagContainer{
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 150px 150px;
+    column-gap: 50px;
+    row-gap: 50px;
+    margin: 25px;
+    padding: 25px;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    border-radius: 25px;
+
+}
+
 .headerContainer{
     display: flex;
     justify-content: center;
@@ -58,6 +88,21 @@
     align-content: center;
     border-radius: 25px;
 }
+
+.TagContainers{
+    display: flex;
+    flex-direction: column;
+    column-gap: 50px;
+    row-gap: 50px;
+    margin: 25px;
+    padding: 25px;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    align-content: center;
+    border-radius: 25px;
+}
+
 .mainPostContainer{
     display: flex;
    flex-direction: column;
