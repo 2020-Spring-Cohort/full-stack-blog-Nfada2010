@@ -23,7 +23,41 @@ public class HttpRequestTest {
     @Test
     public void categoriesEndPointReturnisOk(){
         ResponseEntity<String> response = testRestTemplate.getForEntity(
-                "http://localhost:" + port +"/category",String.class);
+                "http://localhost:" + port +"/categoriesView",String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+
+    }
+    @Test
+    public void categoryEndPointReturnisOk(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity(
+                "http://localhost:" + port +"/categoryPage",String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+
+    }
+    @Test
+    public void indexEndPointReturnsOk(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity(
+                "http://localhost:" + port +"/index",String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+    @Test
+    public void authorsPageReturnsOk(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity(
+                "http://localhost:" + port +"/authorsPage",String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+    @Test
+    public void authorPageReturnsOk(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity(
+                "http://localhost:" + port +"/authorPage",String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+    @Test
+    public void TagPageReturnsOk(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity(
+                "http://localhost:" + port +"/tagViewTemplate",String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
 

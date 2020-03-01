@@ -1,25 +1,35 @@
 package org.wcci.blog.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
+@Entity
 public class Author {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String authorName;
+    @OneToMany
+    private Collection<Post> post;
 
-    private String name;
-    private Post post;
-
-    public Author(String name, Post post) {
-        this.name = name;
-        this.post = post;
+    public Author(String authorName, Post post) {
+        this.authorName = authorName;
+        this.post = Arrays.asList(post);
     }
 
     public Author(){}
 
-    public String getName() {
-        return name;
+    public String getAuthorName() {
+        return authorName;
     }
 
     public Post getPost() {
-        return post;
+        return (Post) post;
     }
 
     @Override
@@ -27,19 +37,19 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return Objects.equals(name, author.name) &&
+        return Objects.equals(authorName, author.authorName) &&
                 Objects.equals(post, author.post);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, post);
+        return Objects.hash(authorName, post);
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "name='" + name + '\'' +
+                "name='" + authorName + '\'' +
                 ", post=" + post +
                 '}';
     }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  class="htmlPost" lang="en"
+       xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post Page</title>
+    <link rel="stylesheet" href="../Css/Style.css">
+    <link rel="stylesheet" href="../Css/Layout.css">
+</head>
+
+<div class="mainPostContainer">
+
+    <div >
+        <div class="category-button">
+            <a href="indexTemplate.html" th:href="@{'/indexTemplate'}">Categories</a>
+        </div>
+
+    </div>
+
+
+    <div>
+        <p th:text="${post.title}"></p>
+        <p th:text="${post.author}"></p>
+        <p th:text="${post.bodyText}"></p>
+
+    </div>
+
+
+    <body class="bodyContainer">
+
+    <div class="post-details">
+<h1 class ="post-details_title" th:text="${post.title}"></h1>
+        <h2 class ="post-details_author" th:each="author:${post.author}"
+        th:text="${author.name}></h2>
+
+        <p class ="post-details_bodyText" th:text="${post.bodyText}"></p>
+
+    </div>
+
+    <div th:each="hashtag : ${post.hashTags}" th:text = "${hashtag.title}"></div>
+
+    <form th:action="'/post/' + ${post.id} + '/add-hashtag'" method="POST">
+        <input name = "hashTagName" type="text">
+        <button type="submit">Add Hashtag</button>
+    </form>
+
+    <form th:action="'/post/' + ${post.id} + '/add-post'" method="POST">
+        <input name = "postBodyText" type="text">
+        <button type="submit">Add Post</button>
+    </form>
+
+    </body>
+
+
+
+</div>
+</html>

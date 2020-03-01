@@ -6,11 +6,12 @@ import org.wcci.blog.Model.Post;
 public class PostStorageJpaImpl implements PostStorage{
     private PostRepository postRepository;
 
-    public PostStorageJpaImpl(PostRepository postRepository){
+    public PostStorageJpaImpl(AuthorRepository authorRepository, CategoryRepository categoryRepository, PostRepository postRepository){
         this.postRepository = postRepository;
     }
     @Override
     public void store(Post post) {
+        postRepository.save(post);
 
     }
 

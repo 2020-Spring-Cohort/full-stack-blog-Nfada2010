@@ -5,7 +5,7 @@ import org.wcci.blog.Model.Author;
 import java.util.Collection;
 
 public interface AuthorStorage {
-    Collection<Author> findAllAuthors();
+    Collection<Author> getAll();
 
     void store(Author author);
 

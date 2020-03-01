@@ -15,12 +15,13 @@ public class CategoryStorageJpaImpl implements CategoryStorage {
     }
 
     @Override
-    public Collection<Category> findAllCategories() {
+    public Collection<Category> getAll() {
         return (Collection<Category>)categoryRepository.findAll();
     }
 
     @Override
     public void store(Category category) {
+        categoryRepository.save(category);
 
     }
 
@@ -28,5 +29,10 @@ public class CategoryStorageJpaImpl implements CategoryStorage {
     public Category findCategoryByGenre(String categoryGenre) {
         return categoryRepository.findByGenre(categoryGenre).get();}
 
+    @Override
+    public Category findCategoryById(long id) {
+        return categoryRepository.findById(id).get();
     }
+
+}
 

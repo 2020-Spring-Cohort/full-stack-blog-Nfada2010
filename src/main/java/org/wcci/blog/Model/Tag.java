@@ -1,16 +1,26 @@
 package org.wcci.blog.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
+@Entity
 public class Tag {
-
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
-    private Post post;
+    @ManyToMany
+    private Collection<Post> post;
     private String title;
 
     public Tag(String name, Post post,String title) {
         this.name = name;
-        this.post = post;
+        this.post = Arrays.asList(post);
         this.title = title;
     }
 
@@ -21,7 +31,7 @@ public class Tag {
     }
 
     public Post getPost() {
-        return post;
+        return (Post) post;
     }
 
     public String getTitle() {
@@ -34,20 +44,18 @@ public class Tag {
         if (o == null || getClass() != o.getClass()) return false;
         Tag tag = (Tag) o;
         return Objects.equals(name, tag.name) &&
-                Objects.equals(post, tag.post) &&
                 Objects.equals(title, tag.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, post, title);
+        return Objects.hash(name, title);
     }
 
     @Override
     public String toString() {
         return "Tag{" +
                 "name='" + name + '\'' +
-                ", post=" + post +
                 ", title='" + title + '\'' +
                 '}';
     }
