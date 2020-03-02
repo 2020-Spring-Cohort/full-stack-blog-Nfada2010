@@ -20,21 +20,21 @@ public class AuthorController {
 
     @GetMapping("/{authorId}")
     public String displayAuthorFromPostPage(@PathVariable long authorId, Model model) {
-        Author retrievedAuthor = authorStorage.findAuthorById(authorId);
+        Author retrievedAuthor = authorStorage.findById(authorId);
         model.addAttribute("author", retrievedAuthor);
-        return "author";
+        return "authorPage";
     }
 
     @PostMapping("add")
     public String AddAuthorForm(@RequestParam String authorName) {
-        authorStorage.store(new Author(authorName));
+        authorStorage.store(new Author());
         return "redirect:/author/all-authors";
     }
 
     @GetMapping("all-authors")
     public String viewAllAuthors(Model model) {
         model.addAttribute("authors", authorStorage.getAll());
-        return "authors";
+        return "authorsPage";
 
     }
 }

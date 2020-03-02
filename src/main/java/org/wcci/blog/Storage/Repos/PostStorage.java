@@ -6,5 +6,5 @@ public interface PostStorage {
 
     void store(Post post);
 
-    Post findPostbyId(long id);
+    Post findPostById(Long id);
 }

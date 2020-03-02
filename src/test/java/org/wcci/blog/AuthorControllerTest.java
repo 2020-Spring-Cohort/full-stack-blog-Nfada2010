@@ -36,12 +36,12 @@ public class AuthorControllerTest {
 
     @Test
     public void shouldReturnViewWithOneAuthor() {
-        Author testAuthor = new Author("authors");
-        when(mockStorage.findAuthorById(1)).thenReturn(testAuthor);
+        Author testAuthor = new Author();
+        when(mockStorage.findById(1)).thenReturn(testAuthor);
 
         underTest.displayAuthorFromPostPage(1, mockModel);
 
-        verify(mockStorage).findAuthorById(1);
+        verify(mockStorage).findById(1);
         verify(mockModel).addAttribute("author", testAuthor);
     }
 
@@ -53,8 +53,8 @@ public class AuthorControllerTest {
 
     @Test
     public void shouldGoToIndividualEndPoint() throws Exception {
-        Author testAuthor = new Author("authors");
-        when(mockStorage.findAuthorById(1)).thenReturn(testAuthor);
+        Author testAuthor = new Author();
+        when(mockStorage.findById(1)).thenReturn(testAuthor);
 
         mockMvc.perform(get("/author/1/"))
                 .andExpect(status().isOk())
@@ -65,7 +65,7 @@ public class AuthorControllerTest {
 
     @Test
     public void tagsEndPointShouldDisplayAllTags() throws Exception {
-        Author testAuthor = new Author("user");
+        Author testAuthor = new Author();
 
         List<Author> authorList = Collections.singletonList(testAuthor);
 
@@ -84,6 +84,6 @@ public class AuthorControllerTest {
         mockMvc.perform(post("/author/add/").param("authorName", "user"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        verify(mockStorage).store(new Author("user"));
+        verify(mockStorage).store(new Author());
     }
 }

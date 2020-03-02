@@ -9,13 +9,6 @@ import org.wcci.blog.Model.Tag;
 import org.wcci.blog.Storage.Repos.TagRepository;
 import org.wcci.blog.Storage.Repos.TagStorage;
 import org.wcci.blog.Storage.Repos.TagStorageJpaImpl;
-import org.wcci.blog.models.Author;
-import org.wcci.blog.models.Category;
-import org.wcci.blog.models.Post;
-import org.wcci.blog.models.Tag;
-import org.wcci.blog.storages.Repositories.TagRepository;
-import org.wcci.blog.storages.TagStorage;
-import org.wcci.blog.storages.TagStorageJpaImpl;
 
 import java.util.Optional;
 
@@ -33,16 +26,16 @@ public class TagStorageJpaImplTest {
     void setUp() {
         tagRepo = mock(TagRepository.class);
         underTest = new TagStorageJpaImpl(tagRepo);
-        Author testAuthor = new Author("user");
-        Category testCategory = new Category("water");
-        Post testPost = new Post("test", "test");
-        testTag = new Tag("#fresh", testPost);
+        Author testAuthor = new Author();
+        Category testCategory = new Category();
+        Post testPost = new Post();
+        testTag = new Tag();
     }
 
     @Test
-    public void shouldFindTagByName() {
-        when(tagRepo.findByName("#fresh")).thenReturn(Optional.of(testTag));
-        Tag retrievedTag = underTest.findTagByName("#fresh");
+    public void shouldFindTagByTitle() {
+        when(tagRepo.findByTitle("#fresh")).thenReturn(Optional.of(testTag));
+        Tag retrievedTag = underTest.findTagByTitle("#fresh");
         assertThat(retrievedTag).isEqualTo(testTag);
     }
 

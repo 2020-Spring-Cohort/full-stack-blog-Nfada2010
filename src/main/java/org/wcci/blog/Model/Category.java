@@ -13,7 +13,7 @@ public class Category {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String categoryName;
     @OneToMany(mappedBy = "category")
     private Collection<Post> post;
 
@@ -24,8 +24,8 @@ public class Category {
 //        return categoryGenre;
 //    }
 
-    public Category(String name, Post post, long id) {
-        this.name = name;
+    public Category(String categoryName, Post post, long id) {
+        this.categoryName = categoryName;
         this.post = Arrays.asList(post);
 //        this.categoryGenre = categoryGenre;
         this.id = id;
@@ -38,8 +38,8 @@ public class Category {
 //        return categoryGenre;
 //    }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public Long getId() {
@@ -57,7 +57,7 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(name, category.name) &&
+        return Objects.equals(categoryName, category.categoryName) &&
                 Objects.equals(post, category.post);
 //                &&
 //                Objects.equals(categoryGenre, category.categoryGenre);
@@ -65,13 +65,13 @@ public class Category {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, post);
+        return Objects.hash(categoryName, post);
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "name='" + name + '\'' +
+                "name='" + categoryName + '\'' +
                 ", post=" + post +
                 ", categoryGenre='" +  '\'' +
                 '}';

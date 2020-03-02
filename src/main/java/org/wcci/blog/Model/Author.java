@@ -18,6 +18,7 @@ public class Author {
     private Collection<Post> post;
 
     public Author(String authorName, Post post) {
+        this.id = id;
         this.authorName = authorName;
         this.post = Arrays.asList(post);
     }
@@ -37,20 +38,20 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return Objects.equals(authorName, author.authorName) &&
-                Objects.equals(post, author.post);
+        return Objects.equals(id, author.id) &&
+                Objects.equals(authorName, author.authorName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorName, post);
+        return Objects.hash(id, authorName);
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "name='" + authorName + '\'' +
-                ", post=" + post +
+                "id=" + id +
+                ", authorName='" + authorName + '\'' +
                 '}';
     }
 }

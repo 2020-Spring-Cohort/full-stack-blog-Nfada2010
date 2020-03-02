@@ -36,7 +36,7 @@ public class CategoryControllerTest {
 
     @Test
     public void shouldReturnViewWithOneCategory() {
-        Category testCategory = new Category("water");
+        Category testCategory = new Category();
         when(mockStorage.findCategoryById(1)).thenReturn(testCategory);
 
         underTest.displayCategoryFromPostPage(1, mockModel);
@@ -53,7 +53,7 @@ public class CategoryControllerTest {
 
     @Test
     public void shouldGoToIndividualEndPoint() throws Exception {
-        Category testCategory = new Category("water");
+        Category testCategory = new Category();
         when(mockStorage.findCategoryById(1)).thenReturn(testCategory);
 
         mockMvc.perform(get("/category/1/"))
@@ -65,7 +65,7 @@ public class CategoryControllerTest {
 
     @Test
     public void categoriesEndPointShouldDisplayAllCategories() throws Exception {
-        Category testCategory = new Category("Test");
+        Category testCategory = new Category();
 
         List<Category> categoryList = Collections.singletonList(testCategory);
 
@@ -84,6 +84,6 @@ public class CategoryControllerTest {
         mockMvc.perform(post("/category/add/").param("categoryName", "test"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        verify(mockStorage).store(new Category("test"));
+        verify(mockStorage).store(new Category());
     }
 }

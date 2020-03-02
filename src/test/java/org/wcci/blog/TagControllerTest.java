@@ -7,14 +7,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import org.wcci.blog.Controller.TagController;
 import org.wcci.blog.Model.Tag;
+import org.wcci.blog.Storage.Repos.PostStorage;
 import org.wcci.blog.Storage.Repos.TagStorage;
 
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Collections.get;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -25,22 +26,23 @@ public class TagControllerTest {
     private TagController underTest;
     private TagStorage mockStorage;
     private Model mockModel;
+    private PostStorage mockStorage2;
 
     @
             BeforeEach
     void setUp() {
         mockModel = mock(Model.class);
         mockStorage = mock(TagStorage.class);
-        underTest = new TagController(mockStorage);
+        underTest = new TagController(mockStorage, mockStorage2);
         mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
     }
 
     @Test
     public void shouldReturnViewWithOneTag() {
-        Tag testTag = new Tag("fresh");
+        Tag testTag = new Tag();
         when(mockStorage.findTagById(1)).thenReturn(testTag);
 
-        underTest.displaySingleTag(1, mockModel);
+        underTest.displayOneTag("", mockModel);
 
         verify(mockStorage).findTagById(1);
         verify(mockModel).addAttribute("tag", testTag);
@@ -48,13 +50,13 @@ public class TagControllerTest {
 
     @Test
     public void shouldReturnViewNamedTagWhenDisplaySingleTagIsCalled() {
-        String viewName = underTest.displaySingleTag(1, mockModel);
+        String viewName = underTest.displayOneTag("", mockModel);
         assertThat(viewName).isEqualTo("tag");
     }
 
     @Test
     public void shouldGoToIndividualEndPoint() throws Exception {
-        Tag testTag = new Tag("fresh");
+        Tag testTag = new Tag();
         when(mockStorage.findTagById(1)).thenReturn(testTag);
 
         mockMvc.perform(get("/tag/1/"))
@@ -66,7 +68,7 @@ public class TagControllerTest {
 
     @Test
     public void tagsEndPointShouldDisplayAllTags() throws Exception {
-        Tag testTag = new Tag("Test");
+        Tag testTag = new Tag();
 
         List<Tag> tagList = Collections.singletonList(testTag);
 
@@ -85,6 +87,6 @@ public class TagControllerTest {
         mockMvc.perform(post("/tag/add/").param("tagName", "test"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        verify(mockStorage).store(new Tag("test"));
+        verify(mockStorage).store(new Tag());
     }
 }

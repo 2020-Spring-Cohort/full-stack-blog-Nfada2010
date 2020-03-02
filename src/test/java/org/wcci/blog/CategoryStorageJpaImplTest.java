@@ -1,16 +1,11 @@
 package org.wcci.blog;
 
 
-
 import org.junit.jupiter.api.Test;
 import org.wcci.blog.Model.Category;
 import org.wcci.blog.Storage.Repos.CategoryRepository;
 import org.wcci.blog.Storage.Repos.CategoryStorage;
 import org.wcci.blog.Storage.Repos.CategoryStorageJpaImpl;
-import org.wcci.blog.models.Category;
-import org.wcci.blog.storages.CategoryStorage;
-import org.wcci.blog.storages.CategoryStorageJpaImpl;
-import org.wcci.blog.storages.Repositories.CategoryRepository;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -24,7 +19,7 @@ public class CategoryStorageJpaImplTest {
     public void shouldStoreCategory() {
         CategoryRepository categoryRepository = mock(CategoryRepository.class);
         CategoryStorage storage = new CategoryStorageJpaImpl(categoryRepository);
-        Category testCategory = new Category("water");
+        Category testCategory = new Category();
         when(categoryRepository.findAll()).thenReturn(Collections.singletonList(testCategory));
         storage.store(testCategory);
         verify(categoryRepository).save(testCategory);
@@ -34,19 +29,19 @@ public class CategoryStorageJpaImplTest {
     @Test
     public void shouldRetrieveSinglePostByName() {
         CategoryRepository mockRepo = mock(CategoryRepository.class);
-        Category testCategory1 = new Category("water");
-        Category testCategory2 = new Category("soda");
+        Category testCategory1 = new Category();
+        Category testCategory2 = new Category();
         CategoryStorage underTest = new CategoryStorageJpaImpl(mockRepo);
         underTest.store(testCategory1);
         underTest.store(testCategory2);
         Optional<Category> testCategory1Optional = Optional.of(testCategory1);
-        when(mockRepo.findByName("water")).thenReturn(testCategory1Optional);
+        when(mockRepo.findByName("venting")).thenReturn(testCategory1Optional);
 
         Optional<Category> testCategory2Optional = Optional.of(testCategory2);
-        when(mockRepo.findByName("soda")).thenReturn(testCategory2Optional);
+        when(mockRepo.findByName("storytime")).thenReturn(testCategory2Optional);
 
-        Category retrievedCategory1 = underTest.findCategoryByName("water");
-        Category retrievedCategory2 = underTest.findCategoryByName("soda");
+        Category retrievedCategory1 = underTest.findCategoryByName("venting");
+        Category retrievedCategory2 = underTest.findCategoryByName("storytime");
         assertThat(retrievedCategory1).isEqualTo(testCategory1);
         assertThat(retrievedCategory2).isEqualTo(testCategory2);
     }

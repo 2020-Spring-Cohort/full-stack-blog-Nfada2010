@@ -24,4 +24,9 @@ public class AuthorStorageJpaImpl implements AuthorStorage {
     public Author findAuthorByName(String authorName) {
         return authorRepository.findByAuthorName(authorName).get();
     }
+
+    @Override
+    public Author findById(long authorId) {
+        return authorRepository.findById(authorId).get();
+    }
 }

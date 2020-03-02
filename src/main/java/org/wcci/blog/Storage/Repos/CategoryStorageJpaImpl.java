@@ -25,9 +25,14 @@ public class CategoryStorageJpaImpl implements CategoryStorage {
 
     }
 
+//    @Override
+//    public Optional<Category> findCategoryByName(String categoryName) {
+//        return categoryRepository.findByName(categoryName);
+//    }
+
     @Override
-    public Category findCategoryByGenre(String categoryGenre) {
-        return categoryRepository.findByGenre(categoryGenre).get();}
+    public Category findCategoryByName(String categoryName) {
+        return categoryRepository.findByName(categoryName).get();}
 
     @Override
     public Category findCategoryById(long id) {

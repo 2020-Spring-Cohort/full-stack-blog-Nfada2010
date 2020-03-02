@@ -19,6 +19,8 @@ public class TagController {
         this.postStorage = postStorage;
     }
 
+    public TagController(){}
+
     @RequestMapping("/tagPage/{title}")
     public  String displayOneTag(@PathVariable String title, Model model){
         Tag retrievedTag = tagStorage.findTagByTitle(title);
