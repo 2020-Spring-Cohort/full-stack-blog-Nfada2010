@@ -40,4 +40,42 @@ public class WebLayerTest {
     }
 
 
+
+
+    @Test
+    public void postsShouldBeOkAndReturnThePostViewWithPostsModelAttribute() throws Exception {
+        mockMvc.perform(get("/post/all-posts"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("posts"))
+                .andExpect(model().attributeExists("posts"));
+    }
+
+    @Test
+    public void authorsShouldBeOkAndReturnTheAuthorViewWithAuthorsModelAttribute() throws Exception {
+        mockMvc.perform(get("/author/all-authors"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("authors"))
+                .andExpect(model().attributeExists("authors"));
+    }
+
+    @Test
+    public void categoriesShouldBeOkAndReturnTheCategoryViewWithCategoriesModelAttribute() throws Exception {
+        mockMvc.perform(get("/category/all-categories"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("categories"))
+                .andExpect(model().attributeExists("categories"));
+    }
+
+    @Test
+    public void tagsShouldBeOkAndReturnTheTagViewWithTagsModelAttribute() throws Exception {
+        mockMvc.perform(get("/tag/all-tags"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("tags"))
+                .andExpect(model().attributeExists("tags"));
+    }
+
 }

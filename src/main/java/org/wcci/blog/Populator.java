@@ -1,4 +1,4 @@
-package org.wcci.blog.Storage.Repos;
+package org.wcci.blog;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -6,6 +6,7 @@ import org.wcci.blog.Model.Author;
 import org.wcci.blog.Model.Category;
 import org.wcci.blog.Model.Post;
 import org.wcci.blog.Model.Tag;
+import org.wcci.blog.Storage.Repos.*;
 
 @Component
 public class Populator implements CommandLineRunner {
@@ -14,7 +15,7 @@ public class Populator implements CommandLineRunner {
     private PostStorageJpaImpl postStorageJpa;
     private AuthorStorageJpaImpl authorStorageJpa;
 
-    public Populator(CategoryStorage categoryStorage, TagStorage tagStorage, PostStorageJpaImpl postStorageJpa,AuthorStorageJpaImpl authorStorageJpa){
+    public Populator(CategoryStorage categoryStorage, TagStorage tagStorage, PostStorageJpaImpl postStorageJpa, AuthorStorageJpaImpl authorStorageJpa){
         this.categoryStorageJpa = (CategoryStorageJpaImpl) categoryStorage;
         this.tagStorageJpa = (TagStorageJpaImpl) tagStorage;
         this.postStorageJpa = postStorageJpa;
